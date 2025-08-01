@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>FurionTest.Application.xml</DocumentationFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<None Remove="FurionTest.Application.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Furion.Pure" Version="4.9.0" />
+	  <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" Version="9.0.5" />
+	  <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.5" />
+	  <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\FurionTest.Core\FurionTest.Core.csproj" />
+	</ItemGroup>
+
+</Project>

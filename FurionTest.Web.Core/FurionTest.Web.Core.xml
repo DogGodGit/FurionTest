@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FurionTest.Web.Core</name>
+    </assembly>
+    <members>
+        <member name="T:FurionTest.Core.JwtHandler">
+            <summary>
+            JWT 授权自定义处理程序
+            </summary>
+        </member>
+        <member name="M:FurionTest.Core.JwtHandler.PipelineAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext,Microsoft.AspNetCore.Http.DefaultHttpContext)">
+            <summary>
+            请求管道
+            </summary>
+            <param name="context"></param>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FurionTest.Core.JwtHandler.CheckAuthorzie(Microsoft.AspNetCore.Http.DefaultHttpContext)">
+            <summary>
+            检查权限
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FurionTest.Core.JwtHandler.HandleAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext)">
+            <summary>
+            重写 Handler 添加自动刷新收取逻辑
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

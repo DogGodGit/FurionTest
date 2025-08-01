@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>FurionTest.Web.Core.xml</DocumentationFile>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<None Remove="FurionTest.Web.Core.xml" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <PackageReference Include="Furion.Pure" Version="4.9.0" />
+	  <PackageReference Include="Scrutor" Version="6.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\FurionTest.Application\FurionTest.Application.csproj" />
+		<ProjectReference Include="..\FurionTest.Common\FurionTest.Common.csproj" />
+	</ItemGroup>
+
+</Project>

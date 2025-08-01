@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FurionTest.Application</name>
+    </assembly>
+    <members>
+        <member name="P:FurionTest.Application.Proxy.LogDispatchProxy.Target">
+            <summary>
+            当前服务实例
+            </summary>
+        </member>
+        <member name="P:FurionTest.Application.Proxy.LogDispatchProxy.Services">
+            <summary>
+            服务提供器，可以用来解析服务，如：Services.GetService()
+            </summary>
+        </member>
+        <member name="M:FurionTest.Application.Proxy.LogDispatchProxy.Invoke(System.Reflection.MethodInfo,System.Object[])">
+            <summary>
+            拦截方法
+            </summary>
+            <param name="method"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="F:FurionTest.Application.Services.ToDoEvent.EventSourceStorer.RabbitMQEventSourceStorer._channel">
+            <summary>
+            内存通道事件源存储器
+            </summary>
+        </member>
+        <member name="F:FurionTest.Application.Services.ToDoEvent.EventSourceStorer.RabbitMQEventSourceStorer._model">
+            <summary>
+            通道对象
+            </summary>
+        </member>
+        <member name="F:FurionTest.Application.Services.ToDoEvent.EventSourceStorer.RabbitMQEventSourceStorer._connection">
+            <summary>
+            连接对象
+            </summary>
+        </member>
+        <member name="F:FurionTest.Application.Services.ToDoEvent.EventSourceStorer.RabbitMQEventSourceStorer._routeKey">
+            <summary>
+            路由键
+            </summary>
+        </member>
+        <member name="M:FurionTest.Application.Services.ToDoEvent.EventSourceStorer.RabbitMQEventSourceStorer.#ctor(RabbitMQ.Client.ConnectionFactory,System.String,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="factory">连接工厂</param>
+            <param name="routeKey">路由键</param>
+            <param name="capacity">存储器最多能够处理多少消息，超过该容量进入等待写入</param>
+        </member>
+        <member name="M:FurionTest.Application.Services.ToDoEvent.EventSourceStorer.RabbitMQEventSourceStorer.WriteAsync(Furion.EventBus.IEventSource,System.Threading.CancellationToken)">
+            <summary>
+            将事件源写入存储器
+            </summary>
+            <param name="eventSource">事件源对象</param>
+            <param name="cancellationToken">取消任务 Token</param>
+            <returns><see cref="T:System.Threading.Tasks.ValueTask"/></returns>
+        </member>
+        <member name="M:FurionTest.Application.Services.ToDoEvent.EventSourceStorer.RabbitMQEventSourceStorer.ReadAsync(System.Threading.CancellationToken)">
+            <summary>
+            从存储器中读取一条事件源
+            </summary>
+            <param name="cancellationToken">取消任务 Token</param>
+            <returns>事件源对象</returns>
+        </member>
+        <member name="M:FurionTest.Application.Services.ToDoEvent.EventSourceStorer.RabbitMQEventSourceStorer.Dispose">
+            <summary>
+            释放非托管资源
+            </summary>
+        </member>
+        <member name="F:FurionTest.Application.Services.ToDoEvent.EventSourceStorer.RedisEventSourceStorer._channel">
+            <summary>
+            内存通道事件源存储器
+            </summary>
+        </member>
+        <member name="P:FurionTest.Application.Services.ToDoEvent.EventSource.RabbitMQEventSource.EventId">
+            <summary>
+            事件 Id
+            </summary>
+        </member>
+        <member name="P:FurionTest.Application.Services.ToDoEvent.EventSource.RabbitMQEventSource.Payload">
+            <summary>
+            事件承载(携带)数据
+            </summary>
+        </member>
+        <member name="P:FurionTest.Application.Services.ToDoEvent.EventSource.RabbitMQEventSource.CreatedTime">
+            <summary>
+            事件创建时间
+            </summary>
+        </member>
+        <member name="P:FurionTest.Application.Services.ToDoEvent.EventSource.RabbitMQEventSource.CancellationToken">
+            <summary>
+            取消任务 Token
+            </summary>
+            <remarks>用于取消本次消息处理</remarks>
+        </member>
+        <member name="P:FurionTest.Application.Services.ToDoEvent.EventSource.RedisEventSource.EventId">
+            <summary>事件 Id</summary>
+        </member>
+        <member name="P:FurionTest.Application.Services.ToDoEvent.EventSource.RedisEventSource.Payload">
+            <summary>事件承载（携带）数据</summary>
+        </member>
+        <member name="P:FurionTest.Application.Services.ToDoEvent.EventSource.RedisEventSource.CreatedTime">
+            <summary>事件创建时间</summary>
+        </member>
+        <member name="P:FurionTest.Application.Services.ToDoEvent.EventSource.ToDoEventSource.EventId">
+            <summary>
+            事件 Id
+            </summary>
+        </member>
+        <member name="P:FurionTest.Application.Services.ToDoEvent.EventSource.ToDoEventSource.Payload">
+            <summary>
+            事件承载（携带）数据
+            </summary>
+        </member>
+        <member name="P:FurionTest.Application.Services.ToDoEvent.EventSource.ToDoEventSource.CreatedTime">
+            <summary>
+            事件创建时间
+            </summary>
+        </member>
+        <member name="P:FurionTest.Application.Services.ToDoEvent.EventSource.ToDoEventSource.CancellationToken">
+            <summary>
+            取消任务 Token
+            </summary>
+            <remarks>用于取消本次消息处理</remarks>
+        </member>
+        <member name="M:JobService.SyncTask">
+            <summary>
+            同步入队
+            </summary>
+        </member>
+        <member name="M:JobService.SyncTask2">
+            <summary>
+            同步入队，延迟 3 秒触发
+            </summary>
+        </member>
+        <member name="M:JobService.AsyncTask">
+            <summary>
+            异步入队
+            </summary>
+        </member>
+        <member name="M:JobService.AsyncTask2">
+            <summary>
+            异步入队，延迟 3 秒触发
+            </summary>
+        </member>
+        <member name="M:JobService.SyncTask3">
+            <summary>
+            同步入队，支持 Cron 表达式延迟
+            </summary>
+        </member>
+        <member name="M:JobService.AsyncTask3">
+            <summary>
+            异步入队，支持 Cron 表达式延迟
+            </summary>
+        </member>
+    </members>
+</doc>

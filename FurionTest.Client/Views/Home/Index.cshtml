@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <input id="userInput" type="text" /><br />
+        <input id="messageInput" type="text" /><br />
+        <input id="btnLogin" type="button" value="登录" />
+        <input id="sendButton" type="button" value="发送" />
+    </div>
+    <ul id="usersList">
+    </ul>
+    <ul id="messagesList">
+    </ul>
+    <script src="~/lib/signalr/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+</body>
+</html>
