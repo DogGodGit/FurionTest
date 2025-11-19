@@ -257,22 +257,26 @@ public class LoopBenchmark
     }
 
     /* 循环的空间复杂度为 O(1) */
-    void Loop(int n)
+
+    private void Loop(int n)
     {
         for (int i = 0; i < n; i++)
         {
             Function();
         }
     }
+
     /* 递归的空间复杂度为 O(n) */
-    int Recur2(int n)
+
+    private int Recur2(int n)
     {
         if (n == 1) return 1;
         return Recur2(n - 1);
     }
 
     /* 常数阶 */
-    void Constant(int n)
+
+    private void Constant(int n)
     {
         // 常量、变量、对象占用 O(1) 空间
         int a = 0;
@@ -292,7 +296,8 @@ public class LoopBenchmark
     }
 
     /* 线性阶 */
-    void Linear(int n)
+
+    private void Linear(int n)
     {
         // 长度为 n 的数组占用 O(n) 空间
         int[] nums = new int[n];
@@ -311,7 +316,8 @@ public class LoopBenchmark
     }
 
     /* 线性阶（递归实现） */
-    void LinearRecur(int n)
+
+    private void LinearRecur(int n)
     {
         Console.WriteLine("递归 n = " + n);
         if (n == 1) return;
@@ -319,7 +325,8 @@ public class LoopBenchmark
     }
 
     /* 平方阶 */
-    void Quadratic(int n)
+
+    private void Quadratic(int n)
     {
         // 矩阵占用 O(n^2) 空间
         int[,] numMatrix = new int[n, n];
@@ -337,7 +344,8 @@ public class LoopBenchmark
     }
 
     /* 平方阶（递归实现） */
-    int QuadraticRecur(int n)
+
+    private int QuadraticRecur(int n)
     {
         if (n <= 0) return 0;
         int[] nums = new int[n];
@@ -346,7 +354,8 @@ public class LoopBenchmark
     }
 
     /* 指数阶（建立满二叉树） */
-    TreeNode? BuildTree(int n)
+
+    private TreeNode? BuildTree(int n)
     {
         if (n == 0) return null;
         TreeNode root = new TreeNode(0)
@@ -356,26 +365,107 @@ public class LoopBenchmark
         };
         return root;
     }
-}
 
-internal class ListNode
-{
-    private int i;
-
-    public ListNode(int i)
+    internal void CreateLinkList()
     {
-        this.i = i;
+        /* 初始化链表 1 -> 3 -> 2 -> 5 -> 4 */
+        // 初始化各个节点
+        ListNode n0 = new(1);
+        ListNode n1 = new(3);
+        ListNode n2 = new(2);
+        ListNode n3 = new(5);
+        ListNode n4 = new(4);
+        // 构建节点之间的引用
+        n0.next = n1;
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
     }
-}
 
-internal class TreeNode
-{
-    internal TreeNode left;
-    internal TreeNode right;
-    private int v;
+    /* 在链表的节点 n0 之后插入节点 P */
 
-    public TreeNode(int v)
+    internal void InsertLinkedList(ListNode n0, ListNode P)
     {
-        this.v = v;
+        ListNode? n1 = n0.next;
+        P.next = n1;
+        n0.next = P;
+    }
+
+    /* 删除链表的节点 n0 之后的首个节点 */
+
+    internal void RemoveLinkedList(ListNode n0)
+    {
+        if (n0.next == null)
+            return;
+        // n0 -> P -> n1
+        ListNode P = n0.next;
+        ListNode? n1 = P.next;
+        n0.next = n1;
+    }
+
+    /* 访问链表中索引为 index 的节点 */
+
+    internal ListNode? Access(ListNode? head, int index)
+    {
+        for (int i = 0; i < index; i++)
+        {
+            if (head == null)
+                return null;
+            head = head.next;
+        }
+        return head;
+    }
+
+    public void CreateQuene()
+    {
+        /* 初始化队列 */
+        Queue<int> queue = new();
+
+        /* 元素入队 */
+        queue.Enqueue(1);
+        queue.Enqueue(3);
+        queue.Enqueue(2);
+        queue.Enqueue(5);
+        queue.Enqueue(4);
+
+        /* 访问队首元素 */
+        int peek = queue.Peek();
+
+        /* 元素出队 */
+        int pop = queue.Dequeue();
+
+        /* 获取队列的长度 */
+        int size = queue.Count;
+
+        /* 判断队列是否为空 */
+        bool isEmpty = queue.Count == 0;
+    }
+
+    public void CreateLinkedList()
+    {
+        /* 初始化双向队列 */
+        // 在 C# 中，将链表 LinkedList 看作双向队列来使用
+        LinkedList<int> deque = new();
+
+        /* 元素入队 */
+        deque.AddLast(2);   // 添加至队尾
+        deque.AddLast(5);
+        deque.AddLast(4);
+        deque.AddFirst(3);  // 添加至队首
+        deque.AddFirst(1);
+
+        /* 访问元素 */
+        int peekFirst = deque.First.Value;  // 队首元素
+        int peekLast = deque.Last.Value;    // 队尾元素
+
+        /* 元素出队 */
+        deque.RemoveFirst();  // 队首元素出队
+        deque.RemoveLast();   // 队尾元素出队
+
+        /* 获取双向队列的长度 */
+        int size = deque.Count;
+
+        /* 判断双向队列是否为空 */
+        bool isEmpty = deque.Count == 0;
     }
 }
