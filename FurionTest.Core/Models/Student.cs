@@ -2,7 +2,6 @@
 using System;
 namespace FurionTest.Core.Models;
 
-[SugarTable("dbo.Student")]
 public class Student
 {
     [SugarColumn(IsPrimaryKey = true, IsIdentity = true, ColumnName = "StudentId", ColumnDescription = "主键")]

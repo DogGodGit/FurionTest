@@ -7,12 +7,12 @@ public class AppDbContext
 {
     public SqlSugarClient Db;
 
-    public AppDbContext(string connectionString)
+    public AppDbContext(string connectionString, DbType DbType = DbType.SqlServer, bool IsAutoCloseConnection = true)
     {
         Db = new SqlSugarClient(new ConnectionConfig()
         {
             ConnectionString = connectionString,
-            DbType = DbType.SqlServer,
+            DbType = DbType,
             IsAutoCloseConnection = true,
             InitKeyType = InitKeyType.Attribute,
 
@@ -67,6 +67,27 @@ public class AppDbContext
             if (!types.Any()) types = [.. typeof(AppDbContext).Assembly.GetTypes().Where(it => it.FullName.Contains("Models"))];
 
             Db.CodeFirst.InitTables(types);
+        }
+    }
+}
+
+public static class SqlSugarExtensions
+{
+    public static void CreateTable(this ISqlSugarClient db, bool Backup = false, int StringDefaultLength = 50, params Type[] types)
+    {
+        db.CodeFirst.SetStringDefaultLength(StringDefaultLength);
+        db.DbMaintenance.CreateDatabase();
+        if (Backup)
+        {
+            db.CodeFirst.BackupTable().InitTables(types);
+        }
+        else
+        {
+            /***批量创建表***/
+            //语法1：
+            if (!types.Any()) types = [.. typeof(AppDbContext).Assembly.GetTypes().Where(it => it.FullName.Contains("Models"))];
+
+            db.CodeFirst.InitTables(types);
         }
     }
 }

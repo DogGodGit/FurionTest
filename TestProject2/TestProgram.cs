@@ -43,6 +43,7 @@ public sealed class TestProgram : TestStartup
                     string outPutSql = SqlProfiler.ParameterFormat(exp.Sql, exp.Parametres);
                     outPutSql.LogError();
                 };
+
             });
         });
     }

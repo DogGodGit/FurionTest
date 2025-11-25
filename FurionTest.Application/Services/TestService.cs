@@ -2,7 +2,6 @@
 using FurionTest.Application.Proxy;
 using FurionTest.Core;
 using FurionTest.Core.Models;
-using System.Data;
 
 namespace FurionTest.Application.Services;
 
@@ -69,10 +68,13 @@ public class TestService : ITestService, ITransient
         //参数2
         dt = db.Ado.GetDataTable("select * from student where StudentID=@id and name=@name", new { id = 1, name = 2 });
 
-        //存储过程用法
-        var nameP = new SugarParameter("@name", "张三");
-        var ageP = new SugarParameter("@age", null, true);//设置为output
-        dt = db.Ado.UseStoredProcedure().GetDataTable("sp_school", nameP, ageP);
+        if (db.CurrentConnectionConfig.DbType == DbType.SqlServer)
+        {
+            //存储过程用法
+            var nameP = new SugarParameter("@name", "张三");
+            var ageP = new SugarParameter("@age", null, true);//设置为output
+            dt = db.Ado.UseStoredProcedure().GetDataTable("sp_school", nameP, ageP);
+        }
     }
 
     public void InsertStudent()

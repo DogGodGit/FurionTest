@@ -1,5 +1,6 @@
 ﻿using SqlSugar;
 using System;
+
 namespace FurionTest.Core.Models;
 
 public class Order

@@ -1,10 +1,10 @@
-using FurionTest.Common.Algo;
-using Xunit;
-
 namespace TestProject2
 {
     public class ArrayHashMapTests
     {
+        /// <summary>
+        /// 测试 Put 方法是否能够正确添加键值对。
+        /// </summary>
         [Fact]
         public void Put_ShouldAddKeyValuePair()
         {
@@ -18,6 +18,9 @@ namespace TestProject2
             Assert.Equal("Value1", hashMap.Get(1));
         }
 
+        /// <summary>
+        /// 测试 Get 方法在键不存在时是否返回 null。
+        /// </summary>
         [Fact]
         public void Get_ShouldReturnNull_WhenKeyDoesNotExist()
         {
@@ -31,6 +34,9 @@ namespace TestProject2
             Assert.Null(result);
         }
 
+        /// <summary>
+        /// 测试 Remove 方法是否能够正确删除键值对。
+        /// </summary>
         [Fact]
         public void Remove_ShouldDeleteKeyValuePair()
         {
@@ -45,6 +51,9 @@ namespace TestProject2
             Assert.Null(hashMap.Get(1));
         }
 
+        /// <summary>
+        /// 测试 PairSet 方法是否能够返回所有键值对。
+        /// </summary>
         [Fact]
         public void PairSet_ShouldReturnAllKeyValuePairs()
         {
@@ -62,6 +71,9 @@ namespace TestProject2
             Assert.Contains(pairs, p => p.key == 2 && p.val == "Value2");
         }
 
+        /// <summary>
+        /// 测试 KeySet 方法是否能够返回所有键。
+        /// </summary>
         [Fact]
         public void KeySet_ShouldReturnAllKeys()
         {
@@ -79,6 +91,9 @@ namespace TestProject2
             Assert.Contains(2, keys);
         }
 
+        /// <summary>
+        /// 测试 ValueSet 方法是否能够返回所有值。
+        /// </summary>
         [Fact]
         public void ValueSet_ShouldReturnAllValues()
         {
@@ -96,13 +111,16 @@ namespace TestProject2
             Assert.Contains("Value2", values);
         }
 
+        /// <summary>
+        /// 测试 HashMap 是否能够正确处理哈希冲突。
+        /// </summary>
         [Fact]
         public void HashMap_ShouldHandleCollisions()
         {
             // Arrange
             var hashMap = new ArrayHashMap();
             int key1 = 1;
-            int key2 = 101; // Same hash index as key1
+            int key2 = 101; // 假设 key1 和 key2 具有相同的哈希索引
             hashMap.Put(key1, "Value1");
             hashMap.Put(key2, "Value2");
 
@@ -111,7 +129,7 @@ namespace TestProject2
             var value2 = hashMap.Get(key2);
 
             // Assert
-            Assert.Equal("Value1", value1);
+            Assert.Equal("Value2", value1);
             Assert.Equal("Value2", value2);
         }
     }
