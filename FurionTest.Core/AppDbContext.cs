@@ -7,6 +7,11 @@ public class AppDbContext
 {
     public SqlSugarClient Db;
 
+    public AppDbContext(ConnectionConfig config)
+    {
+        Db = new SqlSugarClient(config);
+    }
+
     public AppDbContext(string connectionString, DbType DbType = DbType.SqlServer, bool IsAutoCloseConnection = true)
     {
         Db = new SqlSugarClient(new ConnectionConfig()

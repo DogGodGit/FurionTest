@@ -54,9 +54,15 @@ public class UnitTest1
         Assert.NotEqual("Furion", "Fur");
     }
 
-    public void Dispose()
+    [Fact]
+    public void Test_PINQ()
     {
-        // 释放你的对象
+        var list = new List<int>() { 12, 21, 13, 31, 14, 41, 15, 51, 16, 61 };
+        var result = list.AsParallel().Where(x => x > 30);
+        foreach (var item in result)
+        {
+            Output.WriteLine(item.ToString());
+        }
     }
 
     [Theory]
@@ -64,7 +70,7 @@ public class UnitTest1
     [InlineData(true, 50)]
     public void Test_CreateTable(bool Backup = false, int StringDefaultLength = 50, params Type[] types)
     {
-        var db = new AppDbContext(GlobalConfig.ConnectionConfigs[0].ConnectionString);
+        var db = new AppDbContext(GlobalConfig.ConnectionConfigs[0]);
         db.CreateTable(Backup, StringDefaultLength, types);
     }
 }
