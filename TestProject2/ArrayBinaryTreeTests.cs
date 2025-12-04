@@ -11,7 +11,7 @@ public class ArrayBinaryTreeTests
     [Fact]
     public void Test_Constructor()
     {
-        var tree = new ArrayBinaryTree(new List<int?> { 1, 2, 3 });
+        var tree = new ArrayBinaryTree([1, 2, 3]);
         Assert.Equal(3, tree.Size());
         Assert.Equal(1, tree.Val(0));
         Assert.Equal(2, tree.Val(1));
@@ -24,7 +24,7 @@ public class ArrayBinaryTreeTests
     [Fact]
     public void Test_Val_OutOfBounds()
     {
-        var tree = new ArrayBinaryTree(new List<int?> { 1, 2, 3 });
+        var tree = new ArrayBinaryTree([1, 2, 3]);
         Assert.Null(tree.Val(-1));
         Assert.Null(tree.Val(3));
     }
@@ -35,7 +35,7 @@ public class ArrayBinaryTreeTests
     [Fact]
     public void Test_LeftAndRight()
     {
-        var tree = new ArrayBinaryTree(new List<int?> { 1, 2, 3 });
+        var tree = new ArrayBinaryTree([1, 2, 3]);
         Assert.Equal(1, tree.Left(0));
         Assert.Equal(2, tree.Right(0));
     }
@@ -46,7 +46,7 @@ public class ArrayBinaryTreeTests
     [Fact]
     public void Test_Parent()
     {
-        var tree = new ArrayBinaryTree(new List<int?> { 1, 2, 3 });
+        var tree = new ArrayBinaryTree([1, 2, 3]);
         Assert.Equal(0, tree.Parent(1));
         Assert.Equal(0, tree.Parent(2));
     }
@@ -57,9 +57,9 @@ public class ArrayBinaryTreeTests
     [Fact]
     public void Test_LevelOrder()
     {
-        var tree = new ArrayBinaryTree(new List<int?> { 1, 2, 3, null, 5 });
+        var tree = new ArrayBinaryTree([1, 2, 3, null, 5]);
         var result = tree.LevelOrder();
-        Assert.Equal(new List<int> { 1, 2, 3, 5 }, result);
+        Assert.Equal([1, 2, 3, 5], result);
     }
 
     /// <summary>
@@ -68,9 +68,9 @@ public class ArrayBinaryTreeTests
     [Fact]
     public void Test_PreOrder()
     {
-        var tree = new ArrayBinaryTree(new List<int?> { 1, 2, 3, null, 5 });
+        var tree = new ArrayBinaryTree([1, 2, 3, null, 5]);
         var result = tree.PreOrder();
-        Assert.Equal(new List<int> { 1, 2, 5, 3 }, result);
+        Assert.Equal([1, 2, 5, 3], result);
     }
 
     /// <summary>
@@ -79,9 +79,9 @@ public class ArrayBinaryTreeTests
     [Fact]
     public void Test_InOrder()
     {
-        var tree = new ArrayBinaryTree(new List<int?> { 1, 2, 3, null, 5 });
+        var tree = new ArrayBinaryTree([1, 2, 3, null, 5]);
         var result = tree.InOrder();
-        Assert.Equal(new List<int> { 2, 5, 1, 3 }, result);
+        Assert.Equal([2, 5, 1, 3], result);
     }
 
     /// <summary>
@@ -90,8 +90,8 @@ public class ArrayBinaryTreeTests
     [Fact]
     public void Test_PostOrder()
     {
-        var tree = new ArrayBinaryTree(new List<int?> { 1, 2, 3, null, 5 });
+        var tree = new ArrayBinaryTree([1, 2, 3, null, 5]);
         var result = tree.PostOrder();
-        Assert.Equal(new List<int> { 5, 2, 3, 1 }, result);
+        Assert.Equal([5, 2, 3, 1], result);
     }
 }

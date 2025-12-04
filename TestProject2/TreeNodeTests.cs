@@ -31,84 +31,150 @@ public class TreeNodeTests
         Assert.Equal(2, n1.left.val);
         Assert.NotNull(n1.left.left);
         Assert.NotNull(n1.right.right);
-
-        /* 插入与删除节点 */
-        TreeNode P = new(0);
-        // 在 n1 -> n2 中间插入节点 P
-        n1.left = P;
-        P.left = n2;
-        // 删除节点 P
-        n1.left = n2;
-
-        var result = LevelOrder(n1);
-        Assert.Equal(result, [1, 2, 3, 4, 5, 6, 7]);
-
-        list.Clear();
-        PreOrder(n1);
-        Assert.Equal(list, [1, 2, 4, 5, 3, 6, 7]);
-
-        list.Clear();
-        InOrder(n1);
-        Assert.Equal(list, [4, 2, 5, 1, 6, 3, 7]);
-
-        list.Clear();
-        PostOrder(n1);
-        Assert.Equal(list, [4, 5, 2, 6, 7, 3, 1]);
     }
 
-    /* 层序遍历 */
-
-    private List<int> LevelOrder(TreeNode root)
+    [Fact]
+    public void Test_LevelOrder()
     {
-        // 初始化队列，加入根节点
-        Queue<TreeNode> queue = new();
-        queue.Enqueue(root);
-        // 初始化一个列表，用于保存遍历序列
-        List<int> list = [];
-        while (queue.Count != 0)
+        TreeNode root = new(1)
         {
-            TreeNode node = queue.Dequeue(); // 队列出队
-            list.Add(node.val!.Value);       // 保存节点值
-            if (node.left != null)
-                queue.Enqueue(node.left);    // 左子节点入队
-            if (node.right != null)
-                queue.Enqueue(node.right);   // 右子节点入队
-        }
-        return list;
+            left = new(2)
+            {
+                left = new(4),
+                right = new(5)
+            },
+            right = new(3)
+            {
+                left = new(6),
+                right = new(7)
+            }
+        };
+
+        var result = root.LevelOrder();
+        Assert.Equal([1, 2, 3, 4, 5, 6, 7], result);
     }
 
-    private List<int> list = new();
-
-    /* 前序遍历 */
-
-    private void PreOrder(TreeNode? root)
+    [Fact]
+    public void Test_PreOrder()
     {
-        if (root == null) return;
-        // 访问优先级：根节点 -> 左子树 -> 右子树
-        list.Add(root.val!.Value);
-        PreOrder(root.left);
-        PreOrder(root.right);
+        TreeNode root = new(1)
+        {
+            left = new(2)
+            {
+                left = new(4),
+                right = new(5)
+            },
+            right = new(3)
+            {
+                left = new(6),
+                right = new(7)
+            }
+        };
+
+        var result = root.PreOrder();
+        Assert.Equal([1, 2, 4, 5, 3, 6, 7], result);
     }
 
-    /* 中序遍历 */
-
-    private void InOrder(TreeNode? root)
+    [Fact]
+    public void Test_InOrder()
     {
-        if (root == null) return;
-        // 访问优先级：左子树 -> 根节点 -> 右子树
-        InOrder(root.left);
-        list.Add(root.val!.Value);
-        InOrder(root.right);
+        TreeNode root = new(1)
+        {
+            left = new(2)
+            {
+                left = new(4),
+                right = new(5)
+            },
+            right = new(3)
+            {
+                left = new(6),
+                right = new(7)
+            }
+        };
+
+        var result = root.InOrder();
+        Assert.Equal(new List<int> { 4, 2, 5, 1, 6, 3, 7 }, result);
     }
 
-    /* 后序遍历 */
-
-    private void PostOrder(TreeNode? root)
+    [Fact]
+    public void Test_PostOrder()
     {
-        if (root == null) return;
-        // 访问优先级：左子树 -> 右子树 -> 根节点
-        PostOrder(root.left);
-        PostOrder(root.right);
-        list.Add(root.val!.Value);
+        TreeNode root = new(1)
+        {
+            left = new(2)
+            {
+                left = new(4),
+                right = new(5)
+            },
+            right = new(3)
+            {
+                left = new(6),
+                right = new(7)
+            }
+        };
+
+        var result = root.PostOrder();
+        Assert.Equal(new List<int> { 4, 5, 2, 6, 7, 3, 1 }, result);
+    }
+
+    [Fact]
+    public void Test_Insert_And_Search()
+    {
+        TreeNode? root = new(8);
+
+        root.Insert(4);
+        root.Insert(12);
+        root.Insert(2);
+        root.Insert(6);
+        root.Insert(10);
+        root.Insert(14);
+        root.Insert(1);
+        root.Insert(3);
+        root.Insert(5);
+        root.Insert(7);
+        root.Insert(9);
+        root.Insert(11);
+        root.Insert(13);
+        root.Insert(15);
+
+        var result = root.LevelOrder();
+        Assert.Equal([8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15], result);
+
+        var searchResult = root.Search(6);
+        Assert.NotNull(searchResult);
+        Assert.Equal(6, searchResult.val);
+    }
+
+    [Fact]
+    public void Test_Remove()
+    {
+        TreeNode? root = new(8);
+
+        root.Insert(4);
+        root.Insert(12);
+        root.Insert(2);
+        root.Insert(6);
+        root.Insert(10);
+        root.Insert(14);
+        root.Insert(1);
+        root.Insert(3);
+        root.Insert(5);
+        root.Insert(7);
+        root.Insert(9);
+        root.Insert(11);
+        root.Insert(13);
+        root.Insert(15);
+
+        root.Remove(1);
+        var result = root.LevelOrder();
+        Assert.Equal([8, 4, 12, 2, 6, 10, 14, 3, 5, 7, 9, 11, 13, 15], result);
+
+        root.Remove(2);
+        result = root.LevelOrder();
+        Assert.Equal([8, 4, 12, 3, 6, 10, 14, 5, 7, 9, 11, 13, 15], result);
+
+        root.Remove(4);
+        result = root.LevelOrder();
+        Assert.Equal([8, 5, 12, 3, 6, 10, 14, 7, 9, 11, 13, 15], result);
     }
 }
