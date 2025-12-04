@@ -117,12 +117,6 @@ public static class TreeNodeExtend
 
     public static void Insert(this TreeNode? root, int num)
     {
-        // 若树为空，则初始化根节点
-        if (root == null)
-        {
-            root = new TreeNode(num);
-            return;
-        }
         TreeNode? cur = root, pre = null;
         // 循环查找，越过叶节点后跳出
         while (cur != null)

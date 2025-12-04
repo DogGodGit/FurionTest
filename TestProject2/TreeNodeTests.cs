@@ -118,6 +118,30 @@ public class TreeNodeTests
     }
 
     [Fact]
+    public void Test_Insert()
+    {
+        TreeNode? root = new(15);
+
+        root.Insert(14);
+        root.Insert(13);
+        root.Insert(12);
+        root.Insert(11);
+        root.Insert(10);
+        root.Insert(9);
+        root.Insert(8);
+        root.Insert(7);
+        root.Insert(6);
+        root.Insert(5);
+        root.Insert(4);
+        root.Insert(3);
+        root.Insert(2);
+        root.Insert(1);
+
+        var result = root.LevelOrder();
+        Assert.Equal([15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1], result);
+    }
+
+    [Fact]
     public void Test_Insert_And_Search()
     {
         TreeNode? root = new(8);

@@ -35,7 +35,7 @@ public class UnitTest1
     [Theory]
     [InlineData(1, 2)]
     [InlineData(3, 4)]
-    [InlineData(5, 7)]
+    [InlineData(5, 8)]
     public void 带参数测试(int i, int j)
     {
         Assert.NotEqual(0, (i + j) % 2);

@@ -1,10 +1,12 @@
 ﻿/* 二叉树节点类 */
 
-public static class AvlTreeExtensions
+public class AvlTree
 {
+    public TreeNode? root;
+
     /* 获取节点高度 */
 
-    public static int Height(this TreeNode? node)
+    public int Height(TreeNode? node)
     {
         // 空节点高度为 -1 ，叶节点高度为 0
         return node == null ? -1 : node.height;
@@ -12,7 +14,7 @@ public static class AvlTreeExtensions
 
     /* 更新节点高度 */
 
-    public static void UpdateHeight(this TreeNode node)
+    public void UpdateHeight(TreeNode node)
     {
         // 节点高度等于最高子树高度 + 1
         node.height = Math.Max(Height(node.left), Height(node.right)) + 1;
@@ -20,7 +22,7 @@ public static class AvlTreeExtensions
 
     /* 获取平衡因子 */
 
-    public static int BalanceFactor(this TreeNode? node)
+    public int BalanceFactor(TreeNode? node)
     {
         // 空节点平衡因子为 0
         if (node == null) return 0;
@@ -30,7 +32,7 @@ public static class AvlTreeExtensions
 
     /* 右旋操作 */
 
-    public static TreeNode? RightRotate(this TreeNode? node)
+    public TreeNode? RightRotate(TreeNode? node)
     {
         TreeNode? child = node?.left;
         TreeNode? grandChild = child?.right;
@@ -46,7 +48,7 @@ public static class AvlTreeExtensions
 
     /* 左旋操作 */
 
-    public static TreeNode? LeftRotate(this TreeNode? node)
+    public TreeNode? LeftRotate(TreeNode? node)
     {
         TreeNode? child = node?.right;
         TreeNode? grandChild = child?.left;
@@ -62,7 +64,7 @@ public static class AvlTreeExtensions
 
     /* 执行旋转操作，使该子树重新恢复平衡 */
 
-    public static TreeNode? Rotate(this TreeNode? node)
+    public TreeNode? Rotate(TreeNode? node)
     {
         // 获取节点 node 的平衡因子
         int balanceFactorInt = BalanceFactor(node);
@@ -100,16 +102,21 @@ public static class AvlTreeExtensions
         return node;
     }
 
-    /* 递归插入节点（辅助方法） */
+    /* 插入节点 */
+    public void Add(int val)
+    {
+        root = InsertHelper(root, val);
+    }
 
-    public static TreeNode? Add(this TreeNode? node, int val)
+    /* 递归插入节点（辅助方法） */
+    TreeNode? InsertHelper(TreeNode? node, int val)
     {
         if (node == null) return new TreeNode(val);
         /* 1. 查找插入位置并插入节点 */
         if (val < node.val)
-            node.left = Add(node.left, val);
+            node.left = InsertHelper(node.left, val);
         else if (val > node.val)
-            node.right = Add(node.right, val);
+            node.right = InsertHelper(node.right, val);
         else
             return node;     // 重复节点不插入，直接返回
         UpdateHeight(node);  // 更新节点高度
@@ -119,16 +126,21 @@ public static class AvlTreeExtensions
         return node;
     }
 
-    /* 递归删除节点（辅助方法） */
+    /* 删除节点 */
+    public void Delete(int val)
+    {
+        root = RemoveHelper(root, val);
+    }
 
-    public static TreeNode? Delete(this TreeNode? node, int val)
+    /* 递归删除节点（辅助方法） */
+    TreeNode? RemoveHelper(TreeNode? node, int val)
     {
         if (node == null) return null;
         /* 1. 查找节点并删除 */
         if (val < node.val)
-            node.left = Delete(node.left, val);
+            node.left = RemoveHelper(node.left, val);
         else if (val > node.val)
-            node.right = Delete(node.right, val);
+            node.right = RemoveHelper(node.right, val);
         else
         {
             if (node.left == null || node.right == null)
@@ -149,7 +161,7 @@ public static class AvlTreeExtensions
                 {
                     temp = temp.left;
                 }
-                node.right = Delete(node.right, temp.val!.Value);
+                node.right = RemoveHelper(node.right, temp.val!.Value);
                 node.val = temp.val;
             }
         }
