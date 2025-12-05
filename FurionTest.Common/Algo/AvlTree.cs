@@ -1,6 +1,4 @@
-﻿/* 二叉树节点类 */
-
-public class AvlTree
+﻿public class AvlTree
 {
     public TreeNode? root;
 
@@ -46,20 +44,42 @@ public class AvlTree
         return child;
     }
 
-    /* 左旋操作 */
+    /* 左旋操作*/
 
     public TreeNode? LeftRotate(TreeNode? node)
     {
-        TreeNode? child = node?.right;
-        TreeNode? grandChild = child?.left;
-        // 以 child 为原点，将 node 向左旋转
-        child.left = node;
+        /*左旋之前的节点结构：
+         
+          node
+         /    \
+        A    rightChild
+              /     \
+        grandChild    B
+
+         */
+        if (node == null) return node;
+
+        TreeNode? rightChild = node?.right;
+        TreeNode? grandChild = rightChild?.left;
+        // 以 rightChild 为原点，将 node 向左旋转
         node.right = grandChild;
+        rightChild.left = node;
+
+        /*左旋之后节点结构：
+
+              rightChild
+               /     \
+            node       B
+           /   \        
+          A    grandChild
+
+         */
+
         // 更新节点高度
         UpdateHeight(node);
-        UpdateHeight(child);
+        UpdateHeight(rightChild);
         // 返回旋转后子树的根节点
-        return child;
+        return rightChild;
     }
 
     /* 执行旋转操作，使该子树重新恢复平衡 */
