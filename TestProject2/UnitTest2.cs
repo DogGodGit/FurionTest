@@ -1,6 +1,4 @@
-﻿using FurionTest.Application.Interfaces;
-using FurionTest.Core.Models;
-using Xunit.Abstractions;
+﻿using Xunit.Abstractions;
 
 namespace TestProject2;
 
