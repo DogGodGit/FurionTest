@@ -1,9 +1,4 @@
-﻿/* 二叉树节点类 */
-
-/* AVL 树节点类 */
-
-
-public static class TreeNodeExtend
+﻿public static class TreeNodeExtend
 {
     /* 层序遍历 */
 

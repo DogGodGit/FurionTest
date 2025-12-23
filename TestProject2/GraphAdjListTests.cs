@@ -107,13 +107,25 @@ public class GraphAdjListTests
     }
 
     [Fact]
-    public void Size_ShouldReturnCorrectNumberOfVertices()
+    public void TestBFS()
+    {
+        var graph = CreateGraph();
+        Assert.Equal(5, graph.Size());
+        PrintGraph(graph);
+        var list = graph.GraphBFS(new Vertex(5));
+
+        Assert.Equal([5, 1, 2, 4, 3], list.Select(v => v.val));
+    }
+
+
+    [Fact]
+    public void TestDFS()
     {
         var graph = CreateGraph();
         Assert.Equal(5, graph.Size());
 
-        var list = graph.GraphBFS(new Vertex(5));
+        var list = graph.GraphDFS(new Vertex(5));
 
-        Assert.Equal([5, 1, 2, 4, 3], list);
+        Assert.Equal([5, 1, 3, 2, 4], list.Select(v => v.val));
     }
 }
